@@ -1,0 +1,117 @@
+================================================================================
+INDIAN MEDICINE DATASET - STATISTICAL & INSIGHTS SUMMARY
+================================================================================
+
+Source: Kaggle - mohneesh7/indian-medicine-data
+Raw rows: 195605 | Rows after price cleaning & dedup: 6196
+
+--- 1. DATA QUALITY / PREPROCESSING ---
+  sub_category: 0 missing (0.0%)
+  product_name: 0 missing (0.0%)
+  salt_composition: 0 missing (0.0%)
+  product_price: 19436 missing (9.94%)
+  product_manufactured: 0 missing (0.0%)
+  medicine_desc: 0 missing (0.0%)
+  side_effects: 0 missing (0.0%)
+  drug_interactions: 0 missing (0.0%)
+  Duplicate rows removed: 169973
+  Price outliers flagged (kept, not removed): 7914 (upper bound ₹529.00 via IQR*3)
+
+--- 2. PRICE OVERVIEW ---
+count      6196.000000
+mean        911.287552
+std        5527.158794
+min           1.060000
+25%          57.972500
+50%         125.800000
+75%         304.160000
+max      236500.000000
+Name: price_clean, dtype: float64
+
+--- 3. TOP 10 MANUFACTURERS BY PRODUCT COUNT ---
+  Sun Pharmaceutical Industries Ltd: 434 products
+  Cipla Ltd: 322 products
+  Intas Pharmaceuticals Ltd: 251 products
+  Zydus Cadila: 229 products
+  Abbott: 185 products
+  Mankind Pharma Ltd: 179 products
+  Lupin Ltd: 170 products
+  Macleods Pharmaceuticals Pvt Ltd: 158 products
+  Torrent Pharmaceuticals Ltd: 125 products
+  Glenmark Pharmaceuticals Ltd: 110 products
+
+--- 4. TOP 10 PRICIEST MANUFACTURERS (min 30 products) ---
+  Novartis India Ltd: avg ₹6719.06 (n=37)
+  Emcure Pharmaceuticals Ltd: avg ₹5274.70 (n=49)
+  Hetero Drugs Ltd: avg ₹4024.14 (n=37)
+  Bharat Serums & Vaccines Ltd: avg ₹3792.62 (n=37)
+  Dr Reddy's Laboratories Ltd: avg ₹2092.19 (n=103)
+  Pfizer Ltd: avg ₹2080.99 (n=71)
+  Biocon: avg ₹1565.63 (n=36)
+  Intas Pharmaceuticals Ltd: avg ₹1493.66 (n=251)
+  Zydus Cadila: avg ₹1438.62 (n=229)
+  Wockhardt Ltd: avg ₹1002.27 (n=62)
+
+--- 5. TOP 10 CHEAPEST MANUFACTURERS (min 30 products) ---
+  FDC Ltd: avg ₹68.07 (n=47)
+  Indoco Remedies Ltd: avg ₹71.23 (n=31)
+  Systopic Laboratories Pvt Ltd: avg ₹75.23 (n=37)
+  Leeford Healthcare Ltd: avg ₹77.02 (n=33)
+  Mankind Pharma Ltd: avg ₹81.95 (n=179)
+  USV Ltd: avg ₹114.07 (n=40)
+  Wallace Pharmaceuticals Pvt Ltd: avg ₹135.52 (n=35)
+  Aristo Pharmaceuticals Pvt Ltd: avg ₹140.40 (n=89)
+  Ajanta Pharma Ltd: avg ₹153.15 (n=52)
+  Micro Labs Ltd: avg ₹178.21 (n=80)
+
+--- 6. TOP SUB-CATEGORIES ---
+  Human Insulins And Analogues: 40 products
+  Oral Antidiabetics: 40 products
+  Broad Spectrum Penicillins: 40 products
+  Immunosuppressive Agents: 40 products
+  Nitrites And Nitrates: 40 products
+  Angiotensin Ii Antagonists Beta Blockers: 40 products
+  Angiotensin Ii Antagonists Combined With Anti Hypertensives: 40 products
+  Angiotensin Ii Antagonists Calcium Antagonists: 40 products
+  Anti Ulcerants Acid Pump Inhibitors: 40 products
+  Ace Inhibitors Combined With Diuretics: 40 products
+
+--- 7. TOP SALTS BY MAX SAVINGS % (BRANDED VS CHEAPEST ALTERNATIVE) ---
+  Octreotide acetate: min ₹1.06 - max ₹495.00 -> savings up to 99.8% (n=21)
+  Betamethasone: min ₹2.98 - max ₹433.50 -> savings up to 99.3% (n=25)
+  Atropine: min ₹1.32 - max ₹181.90 -> savings up to 99.3% (n=24)
+  Loperamide: min ₹3.19 - max ₹340.00 -> savings up to 99.1% (n=39)
+  Ethinyl Estradiol: min ₹4.25 - max ₹460.96 -> savings up to 99.1% (n=39)
+  Nandrolone Decanoate: min ₹5.14 - max ₹460.36 -> savings up to 98.9% (n=31)
+  Sulfamethoxazole: min ₹2.12 - max ₹175.95 -> savings up to 98.8% (n=32)
+  Aspirin: min ₹4.02 - max ₹245.65 -> savings up to 98.4% (n=25)
+  Sodium Chloride: min ₹7.96 - max ₹420.75 -> savings up to 98.1% (n=30)
+  Doxycycline: min ₹9.98 - max ₹444.55 -> savings up to 97.8% (n=24)
+
+--- 8. CORRELATIONS ---
+  num_side_effects vs price: 0.131
+  Full correlation matrix (price_clean, num_ingredients, num_interactions, num_side_effects):
+                  price_clean  num_ingredients  num_interactions  \
+price_clean          1.000000        -0.069874         -0.057822   
+num_ingredients     -0.069874         1.000000         -0.412717   
+num_interactions    -0.057822        -0.412717          1.000000   
+num_side_effects     0.131056         0.009212         -0.080576   
+
+                  num_side_effects  
+price_clean               0.131056  
+num_ingredients           0.009212  
+num_interactions         -0.080576  
+num_side_effects          1.000000  
+
+--- 9. DRUG INTERACTION RISK ---
+  Medicines with a flagged LIFE-THREATENING interaction: 1249 (20.16%)
+
+--- 10. KEY TAKEAWAYS (for report / dashboard narrative) ---
+  - Dataset covers 789 manufacturers, 790 distinct primary salts, 240 sub-categories.
+  - Median medicine price is ₹125.80; mean is ₹911.29 (right-skewed distribution, few high-cost outliers).
+  - Price varies substantially across brands selling the SAME salt: some salts show >100% price gap between cheapest and priciest brand -> real, data-backed generic-substitution savings potential.
+  - Sun Pharmaceutical Industries Ltd is the most prolific manufacturer by product count; Novartis India Ltd shows the highest average price among manufacturers with sufficient listings.
+
+================================================================================
+END OF SUMMARY
+================================================================================
